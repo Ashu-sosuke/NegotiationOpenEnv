@@ -1,0 +1,17 @@
+name: negotiation-openenv
+version: 0.1.0
+description: "A real-world negotiation environment for evaluating agentic commercial reasoning."
+entrypoint: app:app
+tasks:
+  - name: "buy_vintage_camera"
+    difficulty: "easy"
+    description: "Negotiate a single-item price for a vintage camera."
+    max_turns: 10
+  - name: "event_catering_bundle"
+    difficulty: "medium"
+    description: "Negotiate a package deal including price, menu options, and setup terms."
+    max_turns: 15
+  - name: "server_procurement"
+    difficulty: "hard"
+    description: "High-stakes B2B negotiation with SLAs, bulk pricing, and delivery penalties."
+    max_turns: 20
