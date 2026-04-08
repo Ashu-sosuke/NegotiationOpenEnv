@@ -12,5 +12,5 @@ COPY . .
 # Expose the API port for HF Spaces (default is 7860)
 EXPOSE 7860
 
-# Start the FastAPI server using uvicorn on port 7860
-CMD ["uvicorn", "server.app:app", "--host", "0.0.0.0", "--port", "7860"]
+# Start the FastAPI server by calling the main() function
+CMD ["python", "server/app.py"]
