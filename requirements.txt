@@ -8,3 +8,4 @@ numpy
 pandas
 google-genai
 requests
+huggingface-hub

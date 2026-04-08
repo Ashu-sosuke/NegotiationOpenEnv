@@ -1,3 +1,12 @@
+---
+title: NegotiationOpenEnv
+emoji: 🤝
+colorFrom: blue
+colorTo: indigo
+sdk: docker
+pinned: false
+---
+
 # NegotiationOpenEnv — Meta Hackathon
 
 A specialized OpenEnv environment that simulates real-world commercial negotiations. This environment is designed to evaluate the strategic reasoning, emotional intelligence, and compromise-making abilities of AI agents in a multi-turn, business-oriented dialogue.

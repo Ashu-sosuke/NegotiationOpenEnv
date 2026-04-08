@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "negotiation-openenv"
+version = "0.1.0"
+authors = [
+    { name="AshuBharti", email="ashu@example.com" },
+]
+description = "A benchmark for AI agent negotiation capabilities."
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "openenv-core",
+    "fastapi",
+    "uvicorn",
+    "pydantic",
+    "openai",
+    "python-dotenv",
+    "numpy",
+    "pandas",
+    "google-genai",
+    "requests",
+    "huggingface-hub",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+]
+
+[tool.setuptools]
+packages = ["env", "tasks"]
