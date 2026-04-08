@@ -25,10 +25,13 @@ dependencies = [
     "huggingface-hub",
 ]
 
+[project.scripts]
+server = "server.app:app"
+
 [project.optional-dependencies]
 dev = [
     "pytest",
 ]
 
 [tool.setuptools]
-packages = ["env", "tasks"]
+packages = ["env", "tasks", "server"]
