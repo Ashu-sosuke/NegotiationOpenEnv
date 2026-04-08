@@ -10,7 +10,7 @@ load_dotenv()
 
 # Mandatory Environment Variables as per Hackathon Checklist
 API_BASE_URL = os.getenv("API_BASE_URL", "http://127.0.0.1:8000")
-MODEL_NAME = os.getenv("MODEL_NAME", "gemini-2.5-flash") # Stable for OpenAI wrapper
+MODEL_NAME = os.getenv("MODEL_NAME", "gemini-2.0-flash") # Default model, can override via .env
 HF_TOKEN = os.getenv("HF_TOKEN") # No default as per checklist
 
 # OpenAI-compatible Client Configuration for Gemini
@@ -19,7 +19,7 @@ client = OpenAI(
     base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
 )
 
-MAX_RETRIES = 5
+MAX_RETRIES = 8
 
 def get_agent_action(obs_history: List[Dict], turns_left: int, current_offer: float) -> Dict[str, Any]:
     history_str = "\n".join([f"{h['sender']}: {h['message']} (Price: ${h.get('price', 'N/A')})" for h in obs_history])
@@ -52,9 +52,9 @@ def get_agent_action(obs_history: List[Dict], turns_left: int, current_offer: fl
             return json.loads(completion.choices[0].message.content)
         except Exception as e:
             error_str = str(e)
-            if "429" in error_str and attempt < MAX_RETRIES - 1:
-                wait_time = min(2 ** (attempt + 2), 60)  # 4s, 8s, 16s, 32s, 60s
-                print(f"(STEP) Rate limited, retrying in {wait_time}s (attempt {attempt+1}/{MAX_RETRIES})")
+            if ("429" in error_str or "503" in error_str) and attempt < MAX_RETRIES - 1:
+                wait_time = min(2 ** (attempt + 2), 120)  # 4s, 8s, 16s, 32s, 64s, 120s
+                print(f"(STEP) Rate limited/unavailable, retrying in {wait_time}s (attempt {attempt+1}/{MAX_RETRIES})")
                 time.sleep(wait_time)
             else:
                 raise
