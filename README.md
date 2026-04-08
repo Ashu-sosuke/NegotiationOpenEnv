@@ -58,11 +58,14 @@ uvicorn app:app --reload
 ```
 The API will be available at `http://localhost:8000/docs`.
 
-#### 2. Run Baseline Evaluation
+#### 2. Run Inference Agent
 ```bash
-# Set your OpenAI API key
-export OPENAI_API_KEY="sk-..."
-python baseline.py
+# Set your Gemini API key in .env
+GEMINI_API_KEY=your_key_here
+
+# Start the server, then run inference
+python app.py          # Terminal 1
+python inference.py    # Terminal 2
 ```
 
 #### 3. Docker Deployment
