@@ -12,5 +12,8 @@ COPY . .
 # Expose the API port for HF Spaces (default is 7860)
 EXPOSE 7860
 
-# Start the FastAPI server by calling the main() function
-CMD ["python", "server/app.py"]
+# Set PYTHONPATH to the root directory so modules are findable
+ENV PYTHONPATH=/app
+
+# Start the FastAPI server as a module
+CMD ["python", "-m", "server.app"]
